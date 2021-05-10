@@ -3,7 +3,7 @@ import Add from './Add';
 
 const CardAdd = () => {
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '18rem', backgroundColor: '#ccc' }}>
       {/* <Card.Img variant="top" src="../images/apple-touch-icon.png" /> */}
       <Card.Body>
         <Card.Title>Add a Learner</Card.Title>

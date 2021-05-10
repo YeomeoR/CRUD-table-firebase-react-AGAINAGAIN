@@ -4,11 +4,13 @@ import {
   Col,
   Container,
   Row,
+  ButtonGroup,
+  Button,
   // Badge
 } from 'react-bootstrap';
 import firebase from '../firebase';
 
-const TableData = () => {
+const TableData = (props) => {
   const [learnerData, setLearnerData] = useState('');
 
   useEffect(() => {
@@ -29,10 +31,10 @@ const TableData = () => {
     });
   }, []);
 
-
-  const updateClickHandler = () => {
-    
-  }
+  const deleteHandler = (id) => {
+    const firestore = firebase.database().ref('/learners').child(id);
+    firestore.remove();
+  };
 
   //  not grabbing the correct data but the calc seems good
   // const scoreAvg = (score) => score.reduce((a, b) => a + b, 0) / score.length;
@@ -48,7 +50,7 @@ const TableData = () => {
       ) : (
         <Table striped bordered hover variant="dark">
           <thead>
-              <tr>
+            <tr>
               <th>#</th>
               <th>First Name</th>
               <th>Last Name</th>
@@ -63,7 +65,7 @@ const TableData = () => {
           <tbody>
             {learnerData.map((data, index) => {
               return (
-                <tr key={index + 1} onClick={()=> {updateClickHandler(data)}}>
+                <tr key={index + 1}>
                   {/* onClick to populate update form and edit so 
                   need to pass the state/props */}
                   <td>{index + 1}</td>
@@ -71,6 +73,21 @@ const TableData = () => {
                   <td>{data.lastName}</td>
                   <td>{data.email}</td>
                   <td>{data.score}</td>
+                  <td>
+                    {' '}
+                    <ButtonGroup aria-label="Basic example">
+                      <Button
+                        variant="info"
+                        onClick={props.updateLearnerHandler}
+                      >
+                        Update
+                      </Button>
+
+                      <Button variant="danger" onClick={() => deleteHandler(data.id)}>
+                        Delete
+                      </Button>
+                    </ButtonGroup>
+                  </td>
                 </tr>
               );
             })}

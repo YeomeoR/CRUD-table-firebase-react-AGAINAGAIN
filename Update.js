@@ -2,15 +2,14 @@ import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import { useState } from 'react';
 // import firebase from '../firebase';
 
-const Update = () => {
+const Update = (props) => {
   const [updateFirstName, setUpdateFirstName] = useState('');
   const [updateLastName, setUpdateLastName] = useState('');
   const [updateEmail, setUpdateEmail] = useState('');
-  const [updateScore, setUpdateScore] = useState('');
+    const [updateScore, setUpdateScore] = useState('');
+    // const [learnerId, setLearnerId] = useState('')
+   
 
-      const updateLearnerHandler = () => {
-
-    }
 
   return (
     <InputGroup className="mb-3">
@@ -56,13 +55,13 @@ const Update = () => {
         <FormControl
           aria-label="Score"
           aria-describedby="inputGroup-sizing-default"
-          value={updateScore} onChange={(e) => {setUpdateScore(e.target.value)}}
+          value={updateScore}
+          onChange={(e) => {
+            setUpdateScore(e.target.value);
+          }}
         />
       </InputGroup>
-      <Button
-        variant="outline-info"
-        onClick={() => { updateLearnerHandler() }}
-      >
+      <Button variant="outline-info" update={props.updateLearnerHandler}>
         Update Learner
       </Button>{' '}
     </InputGroup>
