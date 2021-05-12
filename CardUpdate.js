@@ -1,6 +1,7 @@
 import { Card, ListGroup } from 'react-bootstrap';
 import Update from './Update';
 
+
 const CardUpdate = (props) => {
   return (
     <Card style={{ width: '18rem', backgroundColor: 'lightblue' }}>
@@ -12,7 +13,7 @@ const CardUpdate = (props) => {
         </Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
-        <Update updateClick={props.updateClickHandler} />
+        <Update updateClick={() => props.updateClickHandler()} />
       </ListGroup>
     </Card>
   );

@@ -6,7 +6,7 @@ import {
   Row,
   ButtonGroup,
   Button,
-  // Badge
+  Badge
 } from 'react-bootstrap';
 import firebase from '../firebase';
 
@@ -30,6 +30,7 @@ const TableData = (props) => {
       setLearnerData(learnerInfo);
     });
   }, []);
+  
 
   const deleteHandler = (id) => {
     const firestore = firebase.database().ref('/learners').child(id);
@@ -57,8 +58,8 @@ const TableData = (props) => {
               <th>Email</th>
               <th>
                 {/* this doesn't really work because I'm not grabbing the correct data in the calculation */}
-                Score
-                {/* <Badge variant="info">{scoreAvg}</Badge> */}
+                Score 
+                <Badge variant="info">Avg Score</Badge>
               </th>
             </tr>
           </thead>
@@ -78,7 +79,7 @@ const TableData = (props) => {
                     <ButtonGroup aria-label="Basic example">
                       <Button
                         variant="info"
-                        onClick={props.updateLearnerHandler}
+                        onClick={() => props.updateLearnerHandler()}
                       >
                         Update
                       </Button>

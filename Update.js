@@ -6,10 +6,8 @@ const Update = (props) => {
   const [updateFirstName, setUpdateFirstName] = useState('');
   const [updateLastName, setUpdateLastName] = useState('');
   const [updateEmail, setUpdateEmail] = useState('');
-    const [updateScore, setUpdateScore] = useState('');
-    // const [learnerId, setLearnerId] = useState('')
-   
-
+  const [updateScore, setUpdateScore] = useState('');
+  //   const [learnerId, setLearnerId] = useState('');
 
   return (
     <InputGroup className="mb-3">
@@ -61,7 +59,7 @@ const Update = (props) => {
           }}
         />
       </InputGroup>
-      <Button variant="outline-info" update={props.updateLearnerHandler}>
+      <Button variant="outline-info" onClick={() => props.updateClickHandler()}>
         Update Learner
       </Button>{' '}
     </InputGroup>

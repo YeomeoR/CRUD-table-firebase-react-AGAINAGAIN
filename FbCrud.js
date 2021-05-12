@@ -12,8 +12,9 @@ const FbCrud = () => {
   const [learnerId, setLearnerId] = useState('');
 
   const updateLearnerHandler = () => {
-    const firestore = firebase.database().ref('/learners'.child(learnerId));
-    firestore.update({
+    const firestore = firebase.database().ref('/learners').child(learnerId);
+      firestore.update({
+    
       firstName: updateFirstName,
       lastName: updateLastName,
       email: updateEmail,
@@ -25,7 +26,7 @@ const FbCrud = () => {
     setUpdateScore('');
   };
 
-  // this needs to go in TableData so that the 'data' can be passed back down from FbCrud as a prop
+
   const updateClickHandler = (data) => {
     setUpdateFirstName(data.firstName);
     setUpdateLastName(data.lastName);
@@ -33,19 +34,21 @@ const FbCrud = () => {
     setUpdateScore(data.score);
     setLearnerId(data.id);
   };
+
   return (
     <>
       <div className="sidebyside">
         <CardAdd />
         <CardUpdate
-          update={updateLearnerHandler}
-          updateClick={updateClickHandler}
+        //   updateLearnerHandler={updateLearnerHandler}
+          updateClickHandler={updateClickHandler}
         />
       </div>
       <div>
-              <TableData
-                //   updateClick={updateClickHandler}
-              />
+        <TableData
+            updateLearnerHandler={updateLearnerHandler}
+        //   updateClickHandler={updateClickHandler}
+        />
       </div>
     </>
   );
